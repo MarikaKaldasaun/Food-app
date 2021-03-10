@@ -2,9 +2,6 @@ import React,{useEffect, useState}  from "react";
 import Recipe from './Recipe';
 import logo from './logo.png';
 import './App.css';
-import Dropdown from './dropdown.js';
-import './dropdown.css';
-import recipes from './recipes.json'
 
 
 
@@ -18,19 +15,22 @@ function App() {
   const [query, setQuery] = useState('chicken');
 
   useEffect(() => {
+
+    const getRecipes = async () => {
+      const response = await fetch(
+        'https://api.edamam.com/search?q=' +query+ '&app_id=' +APP_ID+ '&app_key=' +APP_KEY                 
+  
+      );
+  
+      const data = await response.json();
+      setRecipes(data.hits);
+      console.log(data.hits);
+    };
+
     getRecipes();
   }, [query]);
 
-  const getRecipes = async () => {
-    const response = await fetch(
-      'https://api.edamam.com/search?q=' +query+ '&app_id=' +APP_ID+ '&app_key=' +APP_KEY                 
-
-    );
-
-    const data = await response.json();
-    setRecipes(data.hits);
-    console.log(data.hits);
-  };
+ 
 
   const updateSearch = (e) => {
     setSearch(e.target.value);
@@ -43,7 +43,6 @@ function App() {
   };
 
 
-  const[value, setValue] = useState(null) //-for dropdown
   return (
     <div className="App">
        <img className ="logo" src={logo} alt="logo"/>
@@ -56,20 +55,7 @@ function App() {
           Search
         </button>
     </form>
-
-   
-  <div className= "Dropdown" style={{ width: 700}}>
-   <Dropdown 
-    prompt='Select recipe...'
-    options={recipes} 
-    id='id'
-    label='name'
-    value={value}
-    onChange={val => setValue}>
-     </Dropdown>
- </div>
-    
-  
+ 
       <div className="recipes">
         {recipes.map((recipe) => (
           <Recipe
