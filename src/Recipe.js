@@ -14,6 +14,7 @@ return(
       <p>Servings {servings}</p> 
       <p> {time} min</p>
       <a href={directions} target='_blank' rel='noreferrer'>  Link to original recipe </a>
+      {/* found that info for including url, not sure what rel=noreferrer means */}
       <img className={style.image} src={image} alt=""/>
   </div>  
 );  

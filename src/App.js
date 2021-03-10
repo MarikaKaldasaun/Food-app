@@ -20,12 +20,12 @@ function App() {
       const response = await fetch(
         'https://api.edamam.com/search?q=' +query+ '&app_id=' +APP_ID+ '&app_key=' +APP_KEY                 
   
-      );
+      ); //got that working without axios, did not incorporate yet
   
       const data = await response.json();
       setRecipes(data.hits);
       console.log(data.hits);
-    };
+    };//data of objects (recipes) is under "hits"
 
     getRecipes();
   }, [query]);
@@ -60,6 +60,7 @@ function App() {
         {recipes.map((recipe) => (
           <Recipe
             key={recipe.recipe.label}
+            //object in API doesn't have an id, don't know what would be a good key
             title={recipe.recipe.label}
             ingredients={recipe.recipe.ingredients}
             servings={recipe.recipe.yield}
