@@ -18,19 +18,22 @@ function App() {
   const [query, setQuery] = useState('chicken');
 
   useEffect(() => {
+
+    const getRecipes = async () => {
+      const response = await fetch(
+        'https://api.edamam.com/search?q=' +query+ '&app_id=' +APP_ID+ '&app_key=' +APP_KEY                 
+  
+      );
+  
+      const data = await response.json();
+      setRecipes(data.hits);
+      console.log(data.hits);
+    };
+
     getRecipes();
   }, [query]);
 
-  const getRecipes = async () => {
-    const response = await fetch(
-      'https://api.edamam.com/search?q=' +query+ '&app_id=' +APP_ID+ '&app_key=' +APP_KEY                 
 
-    );
-
-    const data = await response.json();
-    setRecipes(data.hits);
-    console.log(data.hits);
-  };
 
   const updateSearch = (e) => {
     setSearch(e.target.value);
@@ -67,7 +70,7 @@ function App() {
     value={value}
     onChange={val => setValue}>
      </Dropdown>
- </div>
+     </div>
     
   
       <div className="recipes">
