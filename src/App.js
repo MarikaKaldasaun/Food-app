@@ -5,9 +5,9 @@ import './App.css';
 import Dropdown from './dropdown.js';
 import './dropdown.css';
 import recipes from './recipes.json';
-import 'dropdown_app.js'
+import './dropdown_app.js'
 
-
+//Marika
 
 function App() {
  

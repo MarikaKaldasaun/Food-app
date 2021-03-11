@@ -2,7 +2,7 @@ import React,{ useState}  from "react";
 import './App.css';
 import Dropdown from './dropdown.js';
 import './dropdown.css';
-import recipes from './recipes.json'
+import recipes from './recipes.json';
 
 
 

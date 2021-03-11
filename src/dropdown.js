@@ -3,7 +3,7 @@ import './App.css';
 import './dropdown.css';
 import recipes from './recipes.json';
 import './App.js';
-import 'dropdown_app.js'
+import './dropdown_app.js';
 
 
 export default function Dropdown({
@@ -36,7 +36,7 @@ export default function Dropdown({
         ); 
     }
 
-    function displayValue() {
+    function displayValue(query) {
         if(query.length > 0) return query;
         if(value) return value[label];
         return "";
