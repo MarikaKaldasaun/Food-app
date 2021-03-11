@@ -3,26 +3,27 @@ import Recipe from './Recipe';
 import logo from './logo.png';
 import './App.css';
 
-
+//got that working without axios, did not incorporate yet - I was making too many requests to API=>CORS error
 
 function App() {
  
   const APP_ID = "d4772798";
   const APP_KEY = "aeb29f3f7c9e76d9af0d924a1a5b4672";
 
-  const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState(""); 
-  const [query, setQuery] = useState('chicken');
+  const [recipes, setRecipes] = useState([]);//setRecipes=data.hits - recipe info from API
+  const [search, setSearch] = useState(""); //searcbar renders when the vale is changed
+  const [query, setQuery] = useState('chicken');//query is going to update the page only when clicking submit button
 
+  //making a request from API: when the page rerenders itself, useEffect is going to run
   useEffect(() => {
 
     const getRecipes = async () => {
       const response = await fetch(
         'https://api.edamam.com/search?q=' +query+ '&app_id=' +APP_ID+ '&app_key=' +APP_KEY                 
   
-      ); //got that working without axios, did not incorporate yet
+      ); //await - because the data doesn't come instantly from the API
   
-      const data = await response.json();
+      const data = await response.json(); //data coming back in json form
       setRecipes(data.hits);
       console.log(data.hits);
     };//data of objects (recipes) is under "hits"
@@ -31,15 +32,15 @@ function App() {
   }, [query]);
 
  
-
+//every time you click(onChange), the event will get updated(update the value of the search)
   const updateSearch = (e) => {
     setSearch(e.target.value);
   };
 
-  const getSearch = (e) => {
-    e.preventDefault();
-    setQuery(search);
-    setSearch("");
+  const getSearch = (e) => { //event getSearch is going to be on search-form
+    e.preventDefault(); //prevents constant page refresh
+    setQuery(search); 
+    setSearch(""); //gets finished updated value on my input
   };
 
 
@@ -58,7 +59,7 @@ function App() {
  
       <div className="recipes">
         {recipes.map((recipe) => (
-          <Recipe
+          <Recipe //the props:
             key={recipe.recipe.label}
             //object in API doesn't have an id, don't know what would be a good key
             title={recipe.recipe.label}
