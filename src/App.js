@@ -30,6 +30,8 @@ function App() {
 
     getRecipes();
   }, [query]);
+  
+  console.log({recipes});
 
  
 //every time you click(onChange), the event will get updated(update the value of the search)
@@ -48,19 +50,40 @@ function App() {
     <div className="App">
        <img className ="logo" src={logo} alt="logo"/>
        <form className="search-form" onSubmit={getSearch}>
-       <input className="search-bar"
+       {/* <input className="search-bar"//select
          type="text"
           value={search}
-          onChange={(e) => updateSearch(e)} />
+          onChange={(e) => updateSearch(e)} /> */}
+
+            {/* <input className="search-bar"//select
+         type="text"
+          value={search}
+          onChange={(e) => updateSearch(e)} /> */}
+          {/* <select name="cars" id="cars"  onChange={(e) => updateSearch(e)}>
+  <option value="chicken">chicken</option>
+  <option value="lamb">lamb</option>
+  <option value="pasta">pasta</option> */}
+
+
+{/* </select> */}
+
+<input type="text" name="recipe" list="recipe" value={search}
+          onChange={(e) => updateSearch(e)}/>
+    <datalist id="recipe">
+      <option value="chicken">chicken</option>
+      <option value="lamb">lamb</option>
+    </datalist> 
+
+
          <button className="search-button" type="submit">
           Search
         </button>
     </form>
  
       <div className="recipes">
-        {recipes.map((recipe) => (
+        {recipes.map((recipe, index) => (
           <Recipe //the props:
-            key={recipe.recipe.label}
+            key={index}
             //object in API doesn't have an id, don't know what would be a good key
             title={recipe.recipe.label}
             ingredients={recipe.recipe.ingredients}
