@@ -4,7 +4,8 @@ import logo from './logo.png';
 import './App.css';
 import Dropdown from './dropdown.js';
 import './dropdown.css';
-import recipes from './recipes.json'
+import recipes from './recipes.json';
+import 'dropdown_app.js'
 
 
 
@@ -46,7 +47,7 @@ function App() {
   };
 
 
-  const[value, setValue] = useState(null) //-for dropdown
+  
   return (
     <div className="App">
        <img className ="logo" src={logo} alt="logo"/>
@@ -59,18 +60,6 @@ function App() {
           Search
         </button>
     </form>
-
-   
-  <div className= "Dropdown" style={{ width: 700}}>
-   <Dropdown 
-    prompt='Select recipe...'
-    options={recipes} 
-    id='id'
-    label='name'
-    value={value}
-    onChange={val => setValue}>
-     </Dropdown>
-     </div>
     
   
       <div className="recipes">
@@ -88,7 +77,9 @@ function App() {
     </div>
   );  
 }
-  
-   export default App;
+
+export default App;
+
+
 
  

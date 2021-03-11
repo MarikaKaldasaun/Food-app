@@ -2,7 +2,8 @@ import React,{useEffect, useRef, useState}  from "react";
 import './App.css';
 import './dropdown.css';
 import recipes from './recipes.json';
-import './App.js'
+import './App.js';
+import 'dropdown_app.js'
 
 
 export default function Dropdown({
